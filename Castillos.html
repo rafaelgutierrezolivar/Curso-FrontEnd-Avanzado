@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta por los Castillos de Japón</title>
+    <style>
+        a, a:link, a:hover, a:visited {
+            color: #345082;
+            text-decoration: none;
+        }
+        a.link::after {
+            display: inline-block;
+            height: 12px;
+            width: 12px;  
+            content: url(img/up-right-from-square.svg);
+            margin-left: 4px;
+            vertical-align: 0; 
+        }
+
+        body {
+            width: 90vw;
+            font-family: Arial, sans-serif;
+            margin: auto;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            grid-template-areas: 
+                "header header"
+                "nav nav"
+                "aside main"
+                "footer footer";
+            gap: 20px;
+        }
+        header {
+            grid-area: header;
+            background-color: lightblue;
+            text-align: center;
+            padding: 10px;
+        }
+        nav {
+            grid-area: nav;
+            background-color: lightblue;
+            text-align: center;
+            padding-bottom: 1rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        aside {
+            grid-area: aside;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+        aside ul li {
+            margin: 10px 0;
+        }
+        aside ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        main {
+            grid-area: main;
+            padding: 20px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        article {
+            display: none; /* Ocultar todos los artículos */
+        }
+
+        #articulo1 {
+            display: block; /* Artículo 1 visible por defecto */
+        }
+
+        /* Mostrar solo el artículo seleccionado */
+        article:target {
+            display: block;
+        }
+
+        /* Ocultar el primer artículo solo cuando otro artículo esté activo */
+        main:has(article:target) #articulo1:not(:target) {
+            display: none;
+        }
+        h1 {
+            margin-left: 17%;
+        }
+        .thumbnail {
+            max-width: 50%;
+            height: auto;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .modal img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .modal:target {
+            display: block;
+        }
+        .close {
+            display: block;
+            margin-top: 10px;
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .btn-container {
+            display: inline-block;
+            float: right;
+            text-align: center;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+    <script>
+        function ajustarTexto(accion) {
+            let body = document.body;
+            let tamañoActual = parseFloat(window.getComputedStyle(body).fontSize);
+
+            if (accion === "aumentar") {
+                body.style.fontSize = (tamañoActual + 2) + "px";
+            } else if (accion === "reducir" && tamañoActual > 12) { // Evita reducir demasiado el tamaño
+                body.style.fontSize = (tamañoActual - 2) + "px";
+            }
+        }
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <h1>Ruta por los Castillos de Japón
+            <div class="btn-container">
+                <button onclick="ajustarTexto('aumentar')">Aumentar texto</button>
+                <button onclick="ajustarTexto('reducir')">Reducir texto</button>
+            </div>
+        </h1>
+    </header>
+
+    <nav>
+        <a href="/Castillos.html">Inicio</a>
+        <a href="https://www.japan.travel/es/plan/" target="_blank" class="link">Planifica tu viaje</a>
+        <a href="https://www.japan.travel/es/es/contact/" target="_blank" class="link">Contacto</a>
+    </nav>
+
+    <div class="container">
+        <aside>
+            <h2>Menú</h2>
+            <ul>
+                <li><a href="#articulo1">Castillo de Innoshima Suigun  &#11166;</a></li>
+                <li><a href="#articulo2">Castillo de Tsuruga  &#11166;</a></li>
+                <li><a href="#articulo3">Castillo de Nagahama  &#11166;</a></li>
+                <li><a href="#articulo4">Castillo de Wakayama  &#11166;</a></li>
+                <li><a href="#articulo5">Castillo de Matsuyama  &#11166;</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <article id="articulo1">
+                <h2>Castillo de Innoshima Suigun</h2>
+                <a href="#modal1"><img  src="img/CastillodeTsuruga_pq.png" alt="click para ampliar imagen" title="click para ampliar imagen"></a>
+                <p><a href="https://www.google.com/maps?cid=7457046999297240715" class="link">Ver en Google Maps</a></p>
+                <p><a href="https://maps.google.com/maps?ie=UTF8&f=d&dirflg=t&saddr=Your%20Location&daddr=Castillo%20de%20Tsuruga" class="link">Información de transporte</a></p>
+            </article>
+            <article id="articulo2">
+                <h2>Castillo de Tsuruga</h2>
+                <a href="#modal2"><img  src="img/CastillodeInnoshimaSuigun_pq.png" alt="click para ampliar imagen" title="click para ampliar imagen"></a>
+                <p><a href="https://www.google.com/maps?cid=14365579775189128513" class="link">Ver en Google Maps</a></p>
+                <p><a href="https://maps.google.com/maps?ie=UTF8&f=d&dirflg=t&saddr=Your%20Location&daddr=Castillo%20de%20Innoshima%20Suigun" class="link">Información de transporte</a></p>
+            </article>
+            <article id="articulo3">
+                <h2>Castillo de Nagahama</h2>
+                <a href="#modal3"><img  src="img/CastillodeNagahama_pq.png" alt="click para ampliar imagen" title="click para ampliar imagen"></a>
+                <p><a href="https://www.google.com/maps?cid=11008886490126046740" class="link">Ver en Google Maps</a></p>
+                <p><a href="https://www.google.com/maps?ie=UTF8&f=d&dirflg=t&saddr=Your+Location&daddr=Castillo+de+Nagahama" class="link">Información de transporte</a></p>
+            </article>
+            <article id="articulo4">
+                <h2>Castillo de Wakayama</h2>
+                <a href="#modal4"><img  src="img/CastillodeWakayama_pq.png" alt="click para ampliar imagen" title="click para ampliar imagen"></a>
+                <p><a href="https://www.google.com/maps?cid=16213012957313920147" class="link">Ver en Google Maps</a></p>
+                <p><a href="https://www.google.com/maps?ie=UTF8&f=d&dirflg=t&saddr=Your+Location&daddr=Castillo+de+Wakayama" class="link">Información de transporte</a></p>
+            </article>
+            <article id="articulo5">
+                <h2>Castillo de Matsuyama</h2>
+                <a href="#modal5"><img  src="img/CastillodeMatsuyama_pq.png" alt="click para ampliar imagen" title="click para ampliar imagen"></a>
+                <p><a href="https://www.google.com/maps?cid=5339058785482931074" class="link">Ver en Google Maps</a></p>
+                <p><a href="https://maps.google.com/maps?ie=UTF8&f=d&dirflg=t&saddr=Your%20Location&daddr=Castillo%20de%20Matsuyama" class="link">Información de transporte</a></p>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mi Página Web. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Modales para las imágenes -->
+    <div id="modal1" class="modal">
+        <img src="img/CastillodeInnoshimaSuigun.png" alt="Imagen ampliada 1">
+        <a href="#" class="close">Cerrar</a>
+    </div>
+
+    <div id="modal2" class="modal">
+        <img src="img/CastillodeTsuruga.png" alt="Imagen ampliada 2">
+        <a href="#" class="close">Cerrar</a>
+    </div>
+
+    <div id="modal3" class="modal">
+        <img src="img/CastillodeNagahama.png" alt="Imagen ampliada 3">
+        <a href="#" class="close">Cerrar</a>
+    </div>
+
+    <div id="modal4" class="modal">
+        <img src="img/CastillodeWakayama.png" alt="Imagen ampliada 3">
+        <a href="#" class="close">Cerrar</a>
+    </div>
+
+    <div id="modal5" class="modal">
+        <img src="img/CastillodeMatsuyama.png" alt="Imagen ampliada 3">
+        <a href="#" class="close">Cerrar</a>
+    </div>
+
+</body>
+</html>
