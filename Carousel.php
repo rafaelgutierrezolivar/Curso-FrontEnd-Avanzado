@@ -159,9 +159,6 @@
 
   </div>
 </div>
-
 <script src="js/carousel.js"></script>
-
-    
 </body>
 </html>
